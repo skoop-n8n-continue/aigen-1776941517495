@@ -85,10 +85,52 @@ body, html {
     opacity: 0.95;
 }
 
-.location-box p {
+.location-box #date {
     font-size: 1.5rem;
     font-weight: 300;
     opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.unit-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.unit-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.unit-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.unit-toggle span {
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light);
+    transition: all 0.3s ease;
+    opacity: 0.5;
+}
+
+.unit-toggle span.active {
+    background: var(--primary);
+    color: var(--dark);
+    opacity: 1;
+    box-shadow: 0 4px 10px rgba(0, 183, 175, 0.3);
 }
 
 .current-weather {

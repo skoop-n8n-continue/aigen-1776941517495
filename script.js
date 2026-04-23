@@ -22,27 +22,56 @@ const weatherCodes = {
     95: { desc: 'Thunderstorm', theme: 'stormy', animation: 'storm' }
 };
 
+let currentWeatherData = null;
+let currentUnit = localStorage.getItem('weatherUnit') || 'F';
+
 async function fetchWeather() {
     try {
         const response = await fetch(API_URL, { cache: 'no-store' });
         const data = await response.json();
-        updateUI(data.current);
+        currentWeatherData = data.current;
+        updateUI();
     } catch (error) {
         console.error('Error fetching weather:', error);
         document.getElementById('description').innerText = 'Failed to load weather data';
     }
 }
 
-function updateUI(current) {
+function convertTemp(temp, toUnit) {
+    if (toUnit === 'C') {
+        return (temp - 32) * 5 / 9;
+    }
+    return temp;
+}
+
+function updateUI() {
+    if (!currentWeatherData) return;
+
+    const current = currentWeatherData;
     const code = current.weather_code;
     const weather = weatherCodes[code] || { desc: 'Unknown', theme: 'sunny', animation: 'sun' };
 
+    const tempValue = currentUnit === 'F' ? current.temperature_2m : convertTemp(current.temperature_2m, 'C');
+    const feelsLikeValue = currentUnit === 'F' ? current.apparent_temperature : convertTemp(current.apparent_temperature, 'C');
+
     // Update basic info
-    document.getElementById('temperature').innerText = Math.round(current.temperature_2m);
+    document.getElementById('temperature').innerText = Math.round(tempValue);
+    document.querySelector('.unit').innerText = `°${currentUnit}`;
     document.getElementById('description').innerText = weather.desc;
     document.getElementById('humidity').innerText = `${current.relative_humidity_2m}%`;
     document.getElementById('wind').innerText = `${current.wind_speed_10m} mph`;
-    document.getElementById('feels-like').innerText = `${Math.round(current.apparent_temperature)}°F`;
+    document.getElementById('feels-like').innerText = `${Math.round(feelsLikeValue)}°${currentUnit}`;
+
+    // Update Toggle UI
+    const toggleF = document.querySelector('.toggle-f');
+    const toggleC = document.querySelector('.toggle-c');
+    if (currentUnit === 'F') {
+        toggleF.classList.add('active');
+        toggleC.classList.remove('active');
+    } else {
+        toggleC.classList.add('active');
+        toggleF.classList.remove('active');
+    }
 
     // Update date
     const now = new Date();
@@ -61,6 +90,13 @@ function updateUI(current) {
 
     updateAnimation(weather.animation, current.is_day);
 }
+
+// Unit Toggle Event Listener
+document.getElementById('unit-toggle').addEventListener('click', () => {
+    currentUnit = currentUnit === 'F' ? 'C' : 'F';
+    localStorage.setItem('weatherUnit', currentUnit);
+    updateUI();
+});
 
 function updateAnimation(type, isDay) {
     const layer = document.getElementById('weather-animation');
