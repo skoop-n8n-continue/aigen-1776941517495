@@ -1,0 +1,283 @@
+:root {
+    --primary: #00b7af;
+    --dark: #10181f;
+    --light: #ffffff;
+    --secondary: #6a7071;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-main);
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.weather-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    transition: background 1s ease;
+}
+
+.weather-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.animation-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.weather-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.location-box h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: 0.2rem;
+    margin-bottom: 0.2rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.clock {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    opacity: 0.95;
+}
+
+.location-box p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.current-weather {
+    margin: 4rem 0;
+}
+
+.temp-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#temperature {
+    font-size: 10rem;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.unit {
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    font-weight: 400;
+}
+
+.weather-desc {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-top: 1rem;
+    text-transform: capitalize;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.detail-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.detail-item .label {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-item .value {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Weather Themes */
+.theme-sunny { background: linear-gradient(to bottom, #4facfe, #00f2fe); }
+.theme-cloudy { background: linear-gradient(to bottom, #616161, #9bc5c3); }
+.theme-rainy { background: linear-gradient(to bottom, #203a43, #2c5364); }
+.theme-night { background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
+.theme-snowy { background: linear-gradient(to bottom, #83a4d4, #b6fbff); }
+.theme-stormy { background: linear-gradient(to bottom, #141e30, #243b55); }
+
+/* Sun Animation */
+.sun {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    background: #ffce54;
+    border-radius: 50%;
+    box-shadow: 0 0 100px #ffce54;
+    animation: pulse 4s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 100px #ffce54; }
+    50% { transform: scale(1.1); box-shadow: 0 0 150px #ffce54; }
+}
+
+/* Cloud Animation */
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 100px;
+    opacity: 0.8;
+}
+
+.cloud::after, .cloud::before {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.cloud-1 { width: 200px; height: 60px; top: 15%; animation: moveCloud 40s linear infinite; }
+.cloud-1::after { width: 100px; height: 100px; top: -50px; left: 30px; }
+.cloud-1::before { width: 120px; height: 120px; top: -70px; left: 70px; }
+
+.cloud-2 { width: 250px; height: 80px; top: 30%; animation: moveCloud 60s linear infinite reverse; }
+.cloud-2::after { width: 120px; height: 120px; top: -60px; left: 40px; }
+.cloud-2::before { width: 150px; height: 150px; top: -90px; left: 90px; }
+
+@keyframes moveCloud {
+    from { left: -300px; }
+    to { left: 100%; }
+}
+
+/* Rain Animation */
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    top: -20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+
+/* Snow Animation */
+.snowflake {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    top: -10px;
+    animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+    to { transform: translateY(100vh) translateX(20px); }
+}
+
+/* Storm Animation */
+.lightning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+    animation: lightning-flash 5s infinite;
+}
+
+@keyframes lightning-flash {
+    0%, 90%, 94%, 98%, 100% { opacity: 0; }
+    92%, 96% { opacity: 0.3; }
+}
+
+/* Night Animation */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .location-box h1 { font-size: 2.5rem; }
+    #temperature { font-size: 6rem; }
+    .details-grid { grid-template-columns: 1fr; gap: 1rem; }
+}

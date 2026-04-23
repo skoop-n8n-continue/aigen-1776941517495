@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Weather</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=z3r9t5">
+</head>
+<body>
+    <div id="app" class="weather-container">
+        <div class="weather-background">
+            <div id="weather-animation" class="animation-layer"></div>
+            <div class="overlay"></div>
+        </div>
+
+        <div class="weather-content">
+            <div class="location-box">
+                <h1 id="location">CALIFORNIA</h1>
+                <div id="clock" class="clock">00:00:00</div>
+                <p id="date"></p>
+            </div>
+
+            <div class="current-weather">
+                <div class="temp-container">
+                    <span id="temperature">--</span><span class="unit">°F</span>
+                </div>
+                <div id="description" class="weather-desc">Loading...</div>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <i class="fas fa-droplet"></i>
+                    <span class="label">Humidity</span>
+                    <span id="humidity" class="value">--%</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-wind"></i>
+                    <span class="label">Wind</span>
+                    <span id="wind" class="value">-- mph</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-temperature-half"></i>
+                    <span class="label">Feels Like</span>
+                    <span id="feels-like" class="value">--°F</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js?v=z3r9t5"></script>
+</body>
+</html>
