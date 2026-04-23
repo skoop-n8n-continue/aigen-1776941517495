@@ -59,7 +59,10 @@ function updateUI() {
     document.querySelector('.unit').innerText = `°${currentUnit}`;
     document.getElementById('description').innerText = weather.desc;
     document.getElementById('humidity').innerText = `${current.relative_humidity_2m}%`;
-    document.getElementById('wind').innerText = `${current.wind_speed_10m} mph`;
+
+    const windValue = currentUnit === 'F' ? `${current.wind_speed_10m} mph` : `${Math.round(current.wind_speed_10m * 1.60934)} km/h`;
+    document.getElementById('wind').innerText = windValue;
+
     document.getElementById('feels-like').innerText = `${Math.round(feelsLikeValue)}°${currentUnit}`;
 
     // Update Toggle UI

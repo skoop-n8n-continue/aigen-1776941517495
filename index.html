@@ -9,7 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=m2p5q8">
+    <link rel="stylesheet" href="styles.css?v=z8p4q2">
 </head>
 <body>
     <div id="app" class="weather-container">
@@ -24,7 +24,7 @@
                 <div id="clock" class="clock">00:00:00</div>
                 <div id="date"></div>
                 <div class="unit-toggle-container">
-                    <button id="unit-toggle" class="unit-toggle" aria-label="Toggle Temperature Unit">
+                    <button id="unit-toggle" class="unit-toggle" aria-label="Toggle Temperature Unit" title="Switch between Fahrenheit and Celsius">
                         <span class="toggle-f active">°F</span>
                         <span class="toggle-c">°C</span>
                     </button>
@@ -44,12 +44,12 @@
                     <span class="label">Humidity</span>
                     <span id="humidity" class="value">--%</span>
                 </div>
-                <div class="detail-item">
+                <div id="detail-wind" class="detail-item">
                     <i class="fas fa-wind"></i>
                     <span class="label">Wind</span>
                     <span id="wind" class="value">-- mph</span>
                 </div>
-                <div class="detail-item">
+                <div id="detail-feels" class="detail-item">
                     <i class="fas fa-temperature-half"></i>
                     <span class="label">Feels Like</span>
                     <span id="feels-like" class="value">--°F</span>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js?v=m2p5q8"></script>
+    <script src="script.js?v=z8p4q2"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
